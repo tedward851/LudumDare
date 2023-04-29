@@ -23,4 +23,5 @@ scale = Vector2(0.25, 0.25)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 autostart = true
