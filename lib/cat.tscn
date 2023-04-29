@@ -15,8 +15,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n31v0"]
-radius = 12.0
-height = 68.0
+radius = 14.0
+height = 76.0
 
 [node name="Cat" type="RigidBody2D" groups=["cats"]]
 collision_mask = 0
@@ -32,5 +32,5 @@ frame_progress = 0.879741
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_n31v0")
