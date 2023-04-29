@@ -1,11 +1,16 @@
 extends Node
 
 @export var cat_scene: PackedScene
+@export var hydrant_scene: PackedScene
 var score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
+	var hydrant = hydrant_scene.instantiate()
+	hydrant.position.x = int(randf_range(0, 500))
+	hydrant.position.y = int(randf_range(0, 500))
+	add_child(hydrant)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

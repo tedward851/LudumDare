@@ -52,14 +52,17 @@ func _on_body_entered(body):
 	if body.is_in_group("Cats"):
 		hit.emit()
 		# Must be deferred as we can't change physics properties on a physics callback.
-		$CollisionShape2D.set_deferred("disabled", true)
 		entity_in_control = "Cat"
+		
+		# The cat runs away from the dog
+		body.linear_velocity = body.global_position.direction_to(global_position).normalized() * -600
+		# Set the dog off in pursuit of the cat
 		velocity = body.linear_velocity.normalized() * speed
-		body.linear_velocity = body.linear_velocity.normalized() * 1000
+		rotation = velocity.angle() + (PI / 2)
+		# Update the cat model
+		body.rotation = rotation
 		out_of_control_timer = createTimer(1.0)
-		out_of_control_timer.timeout.connect(func(): 
-			entity_in_control = "Player"
-			$CollisionShape2D.set_deferred("disabled", false))
+		out_of_control_timer.timeout.connect(func(): entity_in_control = "Player")
 		add_child(out_of_control_timer)
 		out_of_control_timer.start()
 		

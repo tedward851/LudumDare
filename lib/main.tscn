@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://tqtmhcrurl4a"]
+[gd_scene load_steps=8 format=3 uid="uid://tqtmhcrurl4a"]
 
 [ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://lib/dog.tscn" id="1_3yokb"]
 [ext_resource type="Script" path="res://lib/main.gd" id="1_tw883"]
 [ext_resource type="PackedScene" uid="uid://djg82q7uqsawk" path="res://lib/cat.tscn" id="2_tc71y"]
+[ext_resource type="PackedScene" uid="uid://jo76qihvcia5" path="res://lib/Hydrant.tscn" id="3_fjg34"]
 [ext_resource type="PackedScene" uid="uid://bqb33jf8f3dl5" path="res://lib/hud.tscn" id="4_te8ps"]
 [ext_resource type="PackedScene" uid="uid://cm1w31l1t8jc4" path="res://lib/person.tscn" id="5_1wdtv"]
 
@@ -15,6 +16,7 @@ point_count = 6
 [node name="Main" type="Node"]
 script = ExtResource("1_tw883")
 cat_scene = ExtResource("2_tc71y")
+hydrant_scene = ExtResource("3_fjg34")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
