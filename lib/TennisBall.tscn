@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://r1o4cmh5g5ro"]
+
+[ext_resource type="Script" path="res://lib/TennisBall.gd" id="1_nx6t1"]
+[ext_resource type="Texture2D" uid="uid://jujmmxc2yxk" path="res://art/TennisBall.png" id="2_35n7c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r5a82"]
+radius = 46.0435
+
+[node name="Ball" type="Area2D"]
+script = ExtResource("1_nx6t1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_35n7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_r5a82")

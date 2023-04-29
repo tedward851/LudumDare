@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm1w31l1t8jc4"]
+
+[ext_resource type="Texture2D" uid="uid://cxcoovq7p67er" path="res://art/Person.png" id="1_nyh4b"]
+[ext_resource type="Script" path="res://lib/person.gd" id="1_uqstq"]
+[ext_resource type="PackedScene" uid="uid://r1o4cmh5g5ro" path="res://lib/TennisBall.tscn" id="2_ol7kc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ne5gs"]
+radius = 25.0799
+
+[node name="Person" type="Area2D"]
+script = ExtResource("1_uqstq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nyh4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ne5gs")
+
+[node name="Ball" parent="." instance=ExtResource("2_ol7kc")]
+position = Vector2(20, 5)
+scale = Vector2(0.25, 0.25)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
