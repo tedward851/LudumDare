@@ -8,9 +8,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_f6l0t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1607.41, 3.018, 0, 0, 0, 0, 1607.41, 1506.74, 0, 0, 0, 0, 809.338, 1508.58, 0, 0, 0, 0, 0, 1511.26, 0, 0, 0, 0, 0, 0)
 }
-point_count = 5
+point_count = 6
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tw883")
@@ -20,6 +20,8 @@ cat_scene = ExtResource("2_tc71y")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 848.0
+offset_bottom = 477.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.4, 0.0627451, 1)
@@ -36,9 +38,11 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="CatPath" type="Path2D" parent="."]
+scale = Vector2(1.24299, 0.74441)
 curve = SubResource("Curve2D_f6l0t")
 
 [node name="CatSpawnLocation" type="PathFollow2D" parent="CatPath"]
+rotation = 0.00187755
 
 [node name="HUD" parent="." instance=ExtResource("4_te8ps")]
 

@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 200
+var speed = 300
 var velocity = Vector2()
 var frictionCoef = 1
 var timer
@@ -13,6 +13,7 @@ var isCarried = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("DeliveryItems")
+	$CollisionShape2D.disabled = true
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,7 +48,7 @@ func fetched():
 	queue_free()
 
 func throw():
-	timer = createTimer(2.5)
+	timer = createTimer(3.5)
 	timer.timeout.connect(func(): 
 		isSlowing = true
 		$CollisionShape2D.set_deferred("disabled", false))
