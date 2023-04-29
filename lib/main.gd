@@ -2,6 +2,7 @@ extends Node
 
 @export var cat_scene: PackedScene
 @export var hydrant_scene: PackedScene
+var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +28,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
+	createObstacles(sprinkler_scene, randi_range(7, 14), 250)
 
 func win_game():
 	$CatTimer.stop()
@@ -64,3 +66,30 @@ func _on_cat_timer_timeout():
 	# Spawn the cat by adding it to the Main scene.
 	add_child(cat)
 
+func createObstacles(scene: PackedScene, num, dist = 150):
+	var obstacle
+	var pos
+	for i in num:
+		var validPos = false
+		obstacle = scene.instantiate()
+		
+		while !validPos:
+			var xPos = randi_range(0, $ColorRect.size.x)
+			var yPos = randi_range(0, $ColorRect.size.y)
+			pos = Vector2(xPos, yPos)
+			validPos = checkObstaclePos(pos, dist)
+		
+		obstacle.global_position = pos
+		add_child(obstacle)
+		
+func checkObstaclePos(pos: Vector2, dist):
+	var obs = get_tree().get_nodes_in_group("Obstacle")
+	for item in obs:
+		if pos.distance_to(item.global_position) < dist:
+			return false
+	return true
+
+func removeObstacles():
+	var obs = get_tree().get_nodes_in_group("Obstacle")
+	for item in obs:
+		item.queue_free()
