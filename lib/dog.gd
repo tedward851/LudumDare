@@ -54,9 +54,8 @@ func _on_body_entered(body):
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$CollisionShape2D.set_deferred("disabled", true)
 		entity_in_control = "Cat"
-		velocity = body.linear_velocity
-		var new_cat_velocity = velocity.normalized() * 1000
-		body.linear_velocity = new_cat_velocity
+		velocity = body.linear_velocity.normalized() * speed
+		body.linear_velocity = body.linear_velocity.normalized() * 1000
 		out_of_control_timer = createTimer(1.0)
 		out_of_control_timer.timeout.connect(func(): 
 			entity_in_control = "Player"

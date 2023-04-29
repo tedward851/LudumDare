@@ -53,7 +53,7 @@ func _on_cat_timer_timeout():
 	cat.rotation = cat_spawn_location.rotation + PI
 
 	# Choose the velocity for the cat.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(250.0, 350.0), 0.0)
 	cat.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the cat by adding it to the Main scene.
