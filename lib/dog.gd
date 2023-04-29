@@ -29,25 +29,7 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play("default")
-		if velocity.x > 0:
-			if velocity.y < 0:
-				rotation = PI / 4
-			elif velocity.y == 0:
-				rotation = PI / 2
-			else:
-				rotation = 3 * PI / 4
-		elif velocity.x < 0:
-			if velocity.y < 0:
-				rotation = 7 * PI / 4
-			elif velocity.y == 0:
-				rotation = 3 * PI /2
-			else:
-				rotation = 5 * PI / 4
-		elif velocity.x == 0:
-			if velocity.y < 0:
-				rotation = 0
-			else:
-				rotation = PI
+		rotation = velocity.angle() + (PI / 2)
 				
 	else:
 		$AnimatedSprite2D.stop()
