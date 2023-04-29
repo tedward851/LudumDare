@@ -4,6 +4,7 @@ var speed = 200
 var velocity = Vector2()
 var frictionCoef = 1
 var timer
+var isThrown = false
 var isSlowing = false
 var carrier: Node2D 
 var isCarried = false
@@ -12,21 +13,16 @@ var isCarried = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("DeliveryItems")
-	timer = createTimer(2.5)
-	timer.timeout.connect(func(): isSlowing = true)
-	add_child(timer)
-	timer.start()
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var frictionVector = velocity.rotated(PI).normalized() * frictionCoef
-	if isSlowing:
-		velocity += frictionVector * delta
+	if isThrown:
+		var frictionVector = velocity.rotated(PI).normalized() * frictionCoef
+		if isSlowing:
+			velocity += frictionVector * delta
 	
-	if !isCarried:
-		position += velocity * delta * speed
+		if !isCarried:
+			position += velocity * delta * speed
 		
 	
 func setVelocity(x, y):
@@ -50,3 +46,20 @@ func createTimer(time):
 func fetched():
 	queue_free()
 
+func throw():
+	timer = createTimer(2.5)
+	timer.timeout.connect(func(): 
+		isSlowing = true
+		$CollisionShape2D.set_deferred("disabled", false))
+	add_child(timer)
+	timer.start()
+	isThrown = true
+	
+
+func reset():
+	position = Vector2(0, 0)
+	velocity = Vector2(0,0)
+	$CollisionShape2D.disabled = true
+	var isCarried = false
+	var isSlowing = false
+	var isThrown = false

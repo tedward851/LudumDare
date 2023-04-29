@@ -20,9 +20,11 @@ func new_game():
 	$Dog.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
+	$Person.reset()
 
 func _on_start_timer_timeout():
 	$CatTimer.start()
+	$Person.throwBall()
 
 
 func _on_cat_timer_timeout():
