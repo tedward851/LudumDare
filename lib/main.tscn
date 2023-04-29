@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://tqtmhcrurl4a"]
 
-[ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://dog.tscn" id="1_3yokb"]
+[ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://lib/dog.tscn" id="1_3yokb"]
 
 [node name="Main" type="Node"]
 

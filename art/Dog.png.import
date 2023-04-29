@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://0kosxmxhw5lk"
-path="res://.godot/imported/istockphoto-1400446011-612x612.png-5f4ebfa5918539005b8cfd5a713df1cf.ctex"
+path="res://.godot/imported/Dog.png-32b7a979302adf50a602475a1b5f40cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://istockphoto-1400446011-612x612.png"
-dest_files=["res://.godot/imported/istockphoto-1400446011-612x612.png-5f4ebfa5918539005b8cfd5a713df1cf.ctex"]
+source_file="res://art/Dog.png"
+dest_files=["res://.godot/imported/Dog.png-32b7a979302adf50a602475a1b5f40cb.ctex"]
 
 [params]
 
