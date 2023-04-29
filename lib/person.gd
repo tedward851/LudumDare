@@ -5,6 +5,7 @@ var ballScene: PackedScene = preload("res://lib/TennisBall.tscn")
 var ball
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("People")
 	setup()
 	
 

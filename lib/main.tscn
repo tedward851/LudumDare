@@ -51,6 +51,7 @@ position = Vector2(107, 120)
 
 [connection signal="area_entered" from="Dog" to="Dog" method="_on_body_entered"]
 [connection signal="hit" from="Dog" to="." method="_on_dog_hit"]
+[connection signal="win" from="Dog" to="." method="win_game"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

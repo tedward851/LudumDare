@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfuu6ffbghfj7"]
+[gd_scene load_steps=6 format=3 uid="uid://cfuu6ffbghfj7"]
 
 [ext_resource type="Script" path="res://lib/dog.gd" id="1_dquh2"]
 [ext_resource type="Texture2D" uid="uid://0kosxmxhw5lk" path="res://art/Dog.png" id="2_b73t5"]
+[ext_resource type="PackedScene" uid="uid://r1o4cmh5g5ro" path="res://lib/TennisBall.tscn" id="2_uhyft"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hakqc"]
 animations = [{
@@ -20,15 +21,15 @@ height = 76.0
 
 [node name="Dog" type="Area2D"]
 script = ExtResource("1_dquh2")
+tennis_ball_scence = ExtResource("2_uhyft")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(4, 0)
+position = Vector2(7, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hakqc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_2qlja")
 

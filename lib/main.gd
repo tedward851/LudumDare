@@ -16,10 +16,17 @@ func _on_dog_hit():
 	$HUD.show_game_over()
 
 func new_game():
-	get_tree().call_group("cats", "queue_free")
+	get_tree().call_group("Cats", "queue_free")
 	$Dog.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
+	$Person.reset()
+
+func win_game():
+	$CatTimer.stop()
+	get_tree().call_group("Cats", "queue_free")
+	$HUD.show_game_won()
+	$Dog.start($StartPosition.position)
 	$Person.reset()
 
 func _on_start_timer_timeout():
