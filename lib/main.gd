@@ -13,10 +13,13 @@ func _process(delta):
 
 func _on_dog_hit():
 	$CatTimer.stop()
+	$HUD.show_game_over()
 
 func new_game():
+	get_tree().call_group("cats", "queue_free")
 	$Dog.start($StartPosition.position)
 	$StartTimer.start()
+	$HUD.show_message("Get Ready")
 
 func _on_start_timer_timeout():
 	$CatTimer.start()

@@ -30,6 +30,7 @@ wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 450)
@@ -44,3 +45,4 @@ curve = SubResource("Curve2D_f6l0t")
 [connection signal="hit" from="Dog" to="." method="_on_dog_hit"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

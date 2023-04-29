@@ -29,7 +29,7 @@ func _process(delta):
 
 
 func _on_message_timer_timeout():
-	$MessageTimer.hide()
+	$Message.hide()
 
 
 func _on_start_button_pressed():
