@@ -27,7 +27,6 @@ color = Color(0, 0.4, 0.0627451, 1)
 [node name="Dog" parent="." instance=ExtResource("1_3yokb")]
 
 [node name="CatTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
