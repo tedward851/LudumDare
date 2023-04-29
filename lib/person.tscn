@@ -16,12 +16,10 @@ texture = ExtResource("1_nyh4b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ne5gs")
 
-[node name="Ball" parent="." instance=ExtResource("2_ol7kc")]
-position = Vector2(20, 5)
-scale = Vector2(0.25, 0.25)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Ball" parent="." instance=ExtResource("2_ol7kc")]
+position = Vector2(17, 8)
+scale = Vector2(0.25, 0.25)

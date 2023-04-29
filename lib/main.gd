@@ -48,3 +48,4 @@ func _on_cat_timer_timeout():
 
 	# Spawn the cat by adding it to the Main scene.
 	add_child(cat)
+

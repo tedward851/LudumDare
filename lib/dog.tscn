@@ -28,4 +28,6 @@ sprite_frames = SubResource("SpriteFrames_hakqc")
 position = Vector2(5, -5.5)
 shape = SubResource("RectangleShape2D_s4j00")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

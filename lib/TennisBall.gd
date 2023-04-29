@@ -1,17 +1,18 @@
 extends Area2D
 
-var speed = 100
+var speed = 200
 var velocity = Vector2()
 var frictionCoef = 1
 var timer
 var isSlowing = false
-var carrier = Node2D
+var carrier: Node2D 
 var isCarried = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer = createTimer(1)
+	add_to_group("DeliveryItems")
+	timer = createTimer(2.5)
 	timer.timeout.connect(func(): isSlowing = true)
 	add_child(timer)
 	timer.start()
@@ -26,13 +27,15 @@ func _process(delta):
 	
 	if !isCarried:
 		position += velocity * delta * speed
-	else:
-		position = carrier.position
 		
 	
 func setVelocity(x, y):
 	velocity.x = x
 	velocity.y = y
+	velocity = velocity.normalized()
+	
+func setVelocityV(vector):
+	velocity = vector
 	velocity = velocity.normalized()
 	
 func setSpeed(v):
@@ -44,7 +47,6 @@ func createTimer(time):
 	timer.one_shot = true
 	return timer
 
-func attachToNode(node):
-	carrier = node
-	isSlowing = false
-	isCarried = true
+func fetched():
+	queue_free()
+
