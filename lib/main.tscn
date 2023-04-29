@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://tqtmhcrurl4a"]
+[gd_scene load_steps=6 format=3 uid="uid://tqtmhcrurl4a"]
 
 [ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://lib/dog.tscn" id="1_3yokb"]
+[ext_resource type="Script" path="res://lib/main.gd" id="1_tw883"]
+[ext_resource type="PackedScene" uid="uid://djg82q7uqsawk" path="res://lib/cat.tscn" id="2_tc71y"]
+[ext_resource type="PackedScene" uid="uid://bqb33jf8f3dl5" path="res://lib/hud.tscn" id="4_te8ps"]
+
+[sub_resource type="Curve2D" id="Curve2D_f6l0t"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
+script = ExtResource("1_tw883")
+cat_scene = ExtResource("2_tc71y")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -13,3 +24,23 @@ grow_vertical = 2
 color = Color(0, 0.4, 0.0627451, 1)
 
 [node name="Dog" parent="." instance=ExtResource("1_3yokb")]
+
+[node name="CatTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="CatPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_f6l0t")
+
+[node name="CatSpawnLocation" type="PathFollow2D" parent="CatPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_te8ps")]
+
+[connection signal="hit" from="Dog" to="." method="_on_dog_hit"]
+[connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
