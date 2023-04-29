@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6jjk2a1m2y7e"]
+
+[ext_resource type="Script" path="res://lib/sprinkler.gd" id="1_5fuky"]
+[ext_resource type="Texture2D" uid="uid://d1etnbcfmf7cg" path="res://art/Sprinkler.png" id="1_oxmbi"]
+[ext_resource type="Texture2D" uid="uid://dbha3bk2l4j87" path="res://art/Spray.png" id="2_whayl"]
+
+[sub_resource type="Animation" id="Animation_jsfqa"]
+resource_name = "Spin"
+length = 2.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4),
+"transitions": PackedFloat32Array(40.786, 27.8576, 32.0001, 19.0273, 42.2244, 16, 16.5642, 15.455, 28.84, 28.84, 26.9087, 17.7531, 36.7583),
+"update": 0,
+"values": [0.0, 0.523599, 1.0472, 1.5708, 2.0944, 2.61799, 3.14159, 3.66519, 4.18879, 4.71239, 5.23599, 5.75959, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2fmox"]
+_data = {
+"Spin": SubResource("Animation_jsfqa")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sguwj"]
+atlas = ExtResource("2_whayl")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wouhg"]
+atlas = ExtResource("2_whayl")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v2ech"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sguwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wouhg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Sprinkler" type="Area2D" groups=["Obstacle", "Sprinkler"]]
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_5fuky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_oxmbi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2fmox")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 402, -289, -64, -481)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(118, -240)
+rotation = 0.359538
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v2ech")
+frame_progress = 0.401659
