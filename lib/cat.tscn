@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://djg82q7uqsawk"]
+
+[ext_resource type="Texture2D" uid="uid://voldk7eb4rjr" path="res://enemyWalking_1.png" id="1_astb3"]
+[ext_resource type="Texture2D" uid="uid://bptootbr5b2tx" path="res://enemyWalking_2.png" id="2_q3jyl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l65rs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_astb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_q3jyl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Cat" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 0.0
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l65rs")
+frame_progress = 0.879741
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
