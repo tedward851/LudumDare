@@ -12,8 +12,9 @@ func _process(delta):
 	pass
 
 func _on_dog_hit():
-	$CatTimer.stop()
-	$HUD.show_game_over()
+	pass
+	#CatTimer.stop()
+	#$HUD.show_game_over()
 
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
