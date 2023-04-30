@@ -10,7 +10,7 @@ func _ready():
 	
 
 func throwBall():
-	ball.setVelocityV(Vector2.from_angle(rotation + PI/2))
+	ball.setVelocityV(Vector2.from_angle(PI/2))
 	ball.throw()
 	
 

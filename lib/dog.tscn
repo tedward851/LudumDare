@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfuu6ffbghfj7"]
+[gd_scene load_steps=9 format=3 uid="uid://cfuu6ffbghfj7"]
 
 [ext_resource type="Script" path="res://lib/dog.gd" id="1_dquh2"]
 [ext_resource type="Texture2D" uid="uid://0kosxmxhw5lk" path="res://art/Dog.png" id="2_b73t5"]
 [ext_resource type="PackedScene" uid="uid://r1o4cmh5g5ro" path="res://lib/TennisBall.tscn" id="2_uhyft"]
+[ext_resource type="Texture2D" uid="uid://dj6gbp8vvq24g" path="res://art/Dog Peeing 1.png" id="4_henpj"]
+[ext_resource type="Texture2D" uid="uid://c1bpycq5rfkm6" path="res://art/Dog Peeing 2.png" id="5_abtc7"]
+[ext_resource type="Texture2D" uid="uid://c3y64xyajnkc4" path="res://art/Dog Peeing 3.png" id="6_njeot"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hakqc"]
 animations = [{
@@ -12,6 +15,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_henpj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_abtc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_njeot")
+}],
+"loop": true,
+"name": &"peeing",
 "speed": 5.0
 }]
 
@@ -28,6 +45,9 @@ metadata/_edit_lock_ = true
 position = Vector2(7, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hakqc")
+animation = &"peeing"
+frame = 2
+frame_progress = 0.0246116
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

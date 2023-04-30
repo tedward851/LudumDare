@@ -21,6 +21,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if entity_in_control == "Player":
+		$AnimatedSprite2D.play("default")
 		velocity = Vector2.ZERO # The player's movement vector.
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1
@@ -31,16 +32,18 @@ func _process(delta):
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1		
 	elif entity_in_control == "Sprinkler":
+		$AnimatedSprite2D.play("default")
 		velocity = global_position.direction_to(target).orthogonal()
 		velocity = velocity + global_position.direction_to(target) * (global_position.distance_to(target) / 1000)
+	elif entity_in_control == "Hydrant":
+		rotation = global_position.direction_to(target).orthogonal().angle() + (PI / 2)
+		velocity = Vector2.ZERO
+		$AnimatedSprite2D.play("peeing")
+		
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play("default")
 		rotation = velocity.angle() + (PI / 2)
-				
-	else:
-		$AnimatedSprite2D.stop()
 
 	position += velocity * delta
 	position.x = clamp(position.x, 0, world_size.x)
@@ -53,6 +56,8 @@ func createTimer(time):
 	return out_of_control_timer
 
 func _on_body_entered(body):
+	if lastObstacle == null:
+		lastObstacle = self
 	if body.is_in_group("Cats"):
 		if body.name != lastObstacle.name:
 			hit.emit()
@@ -89,6 +94,15 @@ func _on_body_entered(body):
 	elif body.is_in_group("Sprinkler"):
 		if body.name != lastObstacle.name:
 			entity_in_control = "Sprinkler"
+			target = body.global_position
+			out_of_control_timer = createTimer(2.0)
+			out_of_control_timer.timeout.connect(func(): entity_in_control = "Player")
+			add_child(out_of_control_timer)
+			out_of_control_timer.start()
+			lastObstacle = body
+	elif body.is_in_group("Hydrant"):
+		if body.name != lastObstacle.name:
+			entity_in_control = "Hydrant"
 			target = body.global_position
 			out_of_control_timer = createTimer(2.0)
 			out_of_control_timer.timeout.connect(func(): entity_in_control = "Player")

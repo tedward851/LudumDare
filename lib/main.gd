@@ -8,10 +8,6 @@ var score
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
-	var hydrant = hydrant_scene.instantiate()
-	hydrant.position.x = int(randf_range(0, 500))
-	hydrant.position.y = int(randf_range(0, 500))
-	add_child(hydrant)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,6 +25,7 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	$Person.reset()
 	createObstacles(sprinkler_scene, randi_range(13, 18), 350)
+	createObstacles(hydrant_scene, randi_range(5, 10), 350)
 
 func win_game():
 	$CatTimer.stop()
@@ -93,3 +90,7 @@ func removeObstacles():
 	var obs = get_tree().get_nodes_in_group("Obstacle")
 	for item in obs:
 		item.queue_free()
+
+
+func _on_hud_next_level():
+	get_tree().change_scene_to_file("res://lib/level_2.tscn")

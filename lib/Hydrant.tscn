@@ -2,16 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://c1japaj3wvasr" path="res://art/Hydrant.png" id="1_inw1d"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_brjxd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imx2k"]
 size = Vector2(48, 88)
 
-[node name="StaticBody2D" type="StaticBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_brjxd")
+[node name="Area2D" type="Area2D" groups=["Hydrant", "Obstacle"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(8, 16)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_inw1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_imx2k")
