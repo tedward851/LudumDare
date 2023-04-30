@@ -4,10 +4,12 @@ extends Node
 @export var hydrant_scene: PackedScene
 var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
+var world_size = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
+	world_size = Vector2($ColorRect.size.x, $ColorRect.size.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,7 +27,7 @@ func new_game():
 	$HUD.show_message("Get Ready")
 	$Person.reset()
 	createObstacles(sprinkler_scene, randi_range(15, 20), 350)
-	createObstacles(hydrant_scene, randi_range(5, 10), 350)
+	createObstacles(hydrant_scene, randi_range(5, 10), 200)
 
 func win_game():
 	$CatTimer.stop()
@@ -80,14 +82,15 @@ func createObstacles(scene: PackedScene, num, dist = 150):
 		obstacle = scene.instantiate()
 		
 		while !validPos:
-			var xPos = randi_range(0, $ColorRect.size.x)
-			var yPos = randi_range(0, $ColorRect.size.y)
+			var xPos = randi_range(0, world_size.x)
+			var yPos = randi_range(0, world_size.y)
 			pos = Vector2(xPos, yPos)
 			validPos = checkObstaclePos(pos, dist)
 		
 		obstacle.global_position = pos
 		add_child(obstacle)
 		
+	
 func checkObstaclePos(pos: Vector2, dist):
 	var obs = get_tree().get_nodes_in_group("Obstacle")
 	for item in obs:
