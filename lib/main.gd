@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$HUD/TimerLabel.text = "%.0f" % $GameTimer.time_left
 
 func _on_dog_hit():
 	pass
@@ -29,13 +29,22 @@ func new_game():
 
 func win_game():
 	$CatTimer.stop()
+	$GameTimer.stop()
 	get_tree().call_group("Cats", "queue_free")
 	$HUD.show_game_won()
+	$Dog.start($StartPosition.position)
+	$Person.reset()
+	
+func lose_game():
+	$CatTimer.stop()
+	get_tree().call_group("Cats", "queue_free")
+	$HUD.show_game_over()
 	$Dog.start($StartPosition.position)
 	$Person.reset()
 
 func _on_start_timer_timeout():
 	$CatTimer.start()
+	$GameTimer.start()
 	$Person.throwBall()
 
 
@@ -94,3 +103,11 @@ func removeObstacles():
 
 func _on_hud_next_level():
 	get_tree().change_scene_to_file("res://lib/level_2.tscn")
+
+
+func _on_game_timer_timeout():
+	lose_game()
+
+
+func _on_dog_score_event(type):
+	$HUD/Score.scoreEvent(type)

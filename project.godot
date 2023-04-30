@@ -13,7 +13,8 @@ config_version=5
 config/name="Ludum Dare"
 run/main_scene="res://lib/main.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://art/DogIcon.png"
+config/windows_native_icon="res://art/icon.ico"
 
 [display]
 

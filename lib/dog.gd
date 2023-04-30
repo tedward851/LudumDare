@@ -2,7 +2,7 @@ extends Area2D
 
 signal hit
 signal win
-
+signal scoreEvent(type)
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var world_size # Size of the game window.
 @export var tennis_ball_scence: PackedScene
@@ -60,6 +60,7 @@ func _on_body_entered(body):
 		lastObstacle = self
 	if body.is_in_group("Cats"):
 		if body.name != lastObstacle.name:
+			scoreEvent.emit("Cat")
 			hit.emit()
 			# Must be deferred as we can't change physics properties on a physics callback.
 			entity_in_control = "Cat"
@@ -77,13 +78,9 @@ func _on_body_entered(body):
 			lastObstacle = body
 		
 	elif body.is_in_group("DeliveryItems"):
-		# Create a new instance of the cat scene.
 		ball = tennis_ball_scence.instantiate()
-
-		# Set the cat's position to a random location.
 		ball.position = Vector2(0, -75)
 		ball.scale = Vector2(.25, .25)
-		# Spawn the cat by adding it to the Main scene.
 		call_deferred("add_child", ball)
 		body.fetched()
 		
@@ -93,6 +90,7 @@ func _on_body_entered(body):
 	
 	elif body.is_in_group("Sprinkler"):
 		if body.name != lastObstacle.name:
+			scoreEvent.emit("Sprinkler")
 			entity_in_control = "Sprinkler"
 			target = body.global_position
 			out_of_control_timer = createTimer(2.0)
@@ -102,6 +100,7 @@ func _on_body_entered(body):
 			lastObstacle = body
 	elif body.is_in_group("Hydrant"):
 		if body.name != lastObstacle.name:
+			scoreEvent.emit("Hydrant")
 			entity_in_control = "Hydrant"
 			target = body.global_position
 			out_of_control_timer = createTimer(2.0)
