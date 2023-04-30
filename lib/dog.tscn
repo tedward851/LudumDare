@@ -12,6 +12,9 @@
 [ext_resource type="AudioStream" uid="uid://m3kskf7cjark" path="res://sound/LunaBark.wav" id="9_wobcf"]
 [ext_resource type="AudioStream" uid="uid://bt5paldbdb5c5" path="res://sound/LunaBark5.wav" id="10_px3i0"]
 [ext_resource type="AudioStream" uid="uid://duks1jnk4c8po" path="res://sound/Peeing.wav" id="11_u26uq"]
+[ext_resource type="Texture2D" uid="uid://cbw3ghf2wygve" path="res://art/Harness Dog Peeing 1.png" id="6_tw4vc"]
+[ext_resource type="Texture2D" uid="uid://bwmierhnhhfro" path="res://art/Harness Dog Peeing 2.png" id="7_dwqpp"]
+[ext_resource type="Texture2D" uid="uid://7x8o8u4oecet" path="res://art/Harness Dog Peeing 3.png" id="8_dv3dr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hakqc"]
 animations = [{
@@ -29,6 +32,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"guide_dog",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_tw4vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dwqpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dv3dr")
+}],
+"loop": true,
+"name": &"guide_dog_peeing",
 "speed": 5.0
 }, {
 "frames": [{
@@ -60,7 +77,7 @@ metadata/_edit_lock_ = true
 position = Vector2(7, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hakqc")
-animation = &"guide_dog"
+animation = &"guide_dog_peeing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

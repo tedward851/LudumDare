@@ -1,8 +1,8 @@
 extends Area2D
 
-signal hit
 signal win
 signal scoreEvent(type)
+signal dropped_blind_person
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var world_size # Size of the game window.
 @export var tennis_ball_scence: PackedScene
@@ -39,13 +39,19 @@ func _process(delta):
 		
 		$AudioHandler.stop()
 	elif entity_in_control == "Sprinkler":
-		$AnimatedSprite2D.play("default")
+		if blind_person != null:
+			$AnimatedSprite2D.play("guide_dog")
+		else:
+			$AnimatedSprite2D.play("default")
 		velocity = global_position.direction_to(target).orthogonal()
 		velocity = velocity + global_position.direction_to(target) * (global_position.distance_to(target) / 1000)
 	elif entity_in_control == "Hydrant":
 		rotation = global_position.direction_to(target).orthogonal().angle() + (PI / 2)
 		velocity = Vector2.ZERO
-		$AnimatedSprite2D.play("peeing")
+		if blind_person != null:
+			$AnimatedSprite2D.play("guide_dog_peeing")
+		else:
+			$AnimatedSprite2D.play("peeing")
 		
 
 	if velocity.length() > 0:
@@ -68,7 +74,6 @@ func _on_body_entered(body):
 	if body.is_in_group("Cats"):
 		if body.name != lastObstacle.name:
 			scoreEvent.emit("Cat")
-			hit.emit()
 			# Must be deferred as we can't change physics properties on a physics callback.
 			entity_in_control = "Cat"
 			# The cat runs away from the dog
@@ -98,6 +103,9 @@ func _on_body_entered(body):
 	
 	elif body.is_in_group("Sprinkler"):
 		if body.name != lastObstacle.name:
+			if blind_person != null:
+				dropped_blind_person.emit()
+				blind_person.queue_free()
 			scoreEvent.emit("Sprinkler")
 			entity_in_control = "Sprinkler"
 			target = body.global_position

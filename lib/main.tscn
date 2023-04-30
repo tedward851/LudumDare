@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://lib/dog.tscn" id="1_3yokb"]
 [ext_resource type="Script" path="res://lib/main.gd" id="1_tw883"]
-[ext_resource type="PackedScene" uid="uid://djg82q7uqsawk" path="res://lib/cat.tscn" id="2_tc71y"]
-[ext_resource type="PackedScene" uid="uid://jo76qihvcia5" path="res://lib/Hydrant.tscn" id="3_wqg0b"]
+[ext_resource type="PackedScene" uid="uid://djg82q7uqsawk" path="res://lib/cat.tscn" id="2_4calk"]
+[ext_resource type="PackedScene" uid="uid://jo76qihvcia5" path="res://lib/Hydrant.tscn" id="3_nwh1p"]
 [ext_resource type="PackedScene" uid="uid://bqb33jf8f3dl5" path="res://lib/hud.tscn" id="4_te8ps"]
 [ext_resource type="PackedScene" uid="uid://cm1w31l1t8jc4" path="res://lib/person.tscn" id="5_1wdtv"]
 [ext_resource type="Texture2D" uid="uid://by1t048hop5aj" path="res://art/GrassTiles.png" id="7_sf42h"]
@@ -29,8 +29,9 @@ point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_tw883")
-cat_scene = ExtResource("2_tc71y")
-hydrant_scene = ExtResource("3_wqg0b")
+cat_scene = ExtResource("2_4calk")
+hydrant_scene = ExtResource("3_nwh1p")
+blind_person_scene = ExtResource("8_1cdes")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -50,6 +51,7 @@ layer_0/tile_data = PackedInt32Array(0, 131072, 0, 65536, 65536, 0, 131072, 1310
 [node name="Dog" parent="." instance=ExtResource("1_3yokb")]
 
 [node name="CatTimer" type="Timer" parent="."]
+wait_time = 0.5
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -78,7 +80,7 @@ position = Vector2(256, 264)
 scale = Vector2(1.3, 1.3)
 
 [connection signal="area_entered" from="Dog" to="Dog" method="_on_body_entered"]
-[connection signal="hit" from="Dog" to="." method="_on_dog_hit"]
+[connection signal="dropped_blind_person" from="Dog" to="." method="_on_dog_dropped_blind_person"]
 [connection signal="scoreEvent" from="Dog" to="." method="_on_dog_score_event"]
 [connection signal="win" from="Dog" to="." method="win_game"]
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]

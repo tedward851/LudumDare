@@ -2,6 +2,7 @@ extends Node
 
 @export var cat_scene: PackedScene
 @export var hydrant_scene: PackedScene
+@export var blind_person_scene: PackedScene
 var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
 var world_size = Vector2()
@@ -27,9 +28,8 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
-	removeObstacles()
-	createObstacles(sprinkler_scene, randi_range(15, 20), 350)
-	createObstacles(hydrant_scene, randi_range(5, 10), 200)
+	createObstacles(sprinkler_scene, randi_range(5, 10), 350)
+	createObstacles(hydrant_scene, randi_range(5, 10), 350)
 
 func win_game():
 	$CatTimer.stop()
@@ -116,3 +116,19 @@ func _on_game_timer_timeout():
 
 func _on_dog_score_event(type):
 	$HUD/Score.scoreEvent(type)
+
+
+func _on_dog_dropped_blind_person():
+	# Create a new instance of the blind person.
+		var blind_person = blind_person_scene.instantiate()
+
+		# Set the cat's position to a random location.
+		blind_person.position.x = $Dog.position.x + 200
+		blind_person.position.y = $Dog.position.y + 200
+		
+		blind_person.looking_for_dog = true
+		
+		blind_person.scale = Vector2(1.3, 1.3)
+		# Spawn the cat by adding it to the Main scene.
+		await call_deferred("add_child", blind_person)
+		
