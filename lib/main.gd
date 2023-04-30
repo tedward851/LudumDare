@@ -24,7 +24,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
-	createObstacles(sprinkler_scene, randi_range(13, 18), 350)
+	createObstacles(sprinkler_scene, randi_range(0, 0), 350)
 	createObstacles(hydrant_scene, randi_range(5, 10), 350)
 
 func win_game():
@@ -58,7 +58,7 @@ func _on_cat_timer_timeout():
 
 	# Choose the velocity for the cat.
 	var velocity = Vector2(randf_range(250.0, 350.0), 0.0)
-	cat.linear_velocity = velocity.rotated(direction)
+	cat.velocity = velocity.rotated(direction)
 
 	# Spawn the cat by adding it to the Main scene.
 	add_child(cat)

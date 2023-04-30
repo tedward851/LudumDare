@@ -9,7 +9,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_f6l0t"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2413.53, 0, 0, 0, 0, 0, 2413.53, 4030.04, 0, 0, 0, 0, 0, 4030.04, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3000, 0, 0, 0, 0, 0, 3000, 3000, 0, 0, 0, 0, 0, 3000, 0, 0, 0, 0, 0, 0)
 }
 point_count = 5
 
@@ -40,7 +40,6 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="CatPath" type="Path2D" parent="."]
-scale = Vector2(1.24299, 0.74441)
 curve = SubResource("Curve2D_f6l0t")
 
 [node name="CatSpawnLocation" type="PathFollow2D" parent="CatPath"]
