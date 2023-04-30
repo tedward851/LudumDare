@@ -5,10 +5,13 @@ extends Node
 @export var blind_person_scene: PackedScene
 var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
+var world_size = Vector2()
+const SAFE_ZONE = Vector2(350, 500)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
+	world_size = Vector2($ColorRect.size.x, $ColorRect.size.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -81,18 +84,19 @@ func createObstacles(scene: PackedScene, num, dist = 150):
 		obstacle = scene.instantiate()
 		
 		while !validPos:
-			var xPos = randi_range(0, $ColorRect.size.x)
-			var yPos = randi_range(0, $ColorRect.size.y)
+			var xPos = randi_range(0, world_size.x)
+			var yPos = randi_range(0, world_size.y)
 			pos = Vector2(xPos, yPos)
 			validPos = checkObstaclePos(pos, dist)
 		
 		obstacle.global_position = pos
 		add_child(obstacle)
 		
+	
 func checkObstaclePos(pos: Vector2, dist):
 	var obs = get_tree().get_nodes_in_group("Obstacle")
 	for item in obs:
-		if pos.distance_to(item.global_position) < dist:
+		if pos.distance_to(item.global_position) < dist or (pos.x < SAFE_ZONE.x && pos.y < SAFE_ZONE.y):
 			return false
 	return true
 
