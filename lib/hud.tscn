@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqb33jf8f3dl5"]
+[gd_scene load_steps=5 format=3 uid="uid://bqb33jf8f3dl5"]
 
 [ext_resource type="Script" path="res://lib/hud.gd" id="1_2ci2b"]
+[ext_resource type="Script" path="res://lib/Score.gd" id="2_bajef"]
+
+[sub_resource type="Theme" id="Theme_auoc1"]
+default_font_size = 30
+
+[sub_resource type="Theme" id="Theme_turjo"]
+default_font_size = 40
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_2ci2b")
@@ -53,6 +60,43 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Next Level"
+
+[node name="Score" type="Node2D" parent="."]
+script = ExtResource("2_bajef")
+
+[node name="ComboTimer" type="Timer" parent="Score"]
+wait_time = 3.0
+
+[node name="ScoreLabel" type="Label" parent="Score"]
+offset_left = 4.0
+offset_right = 192.0
+offset_bottom = 45.0
+theme = SubResource("Theme_auoc1")
+text = "Score: 0"
+
+[node name="ComboLabel" type="Label" parent="Score"]
+offset_left = 2.0
+offset_top = 48.0
+offset_right = 115.0
+offset_bottom = 74.0
+text = "Combo: x1"
+
+[node name="HighScoreLabel" type="Label" parent="Score"]
+visible = false
+offset_left = 4.0
+offset_top = 616.0
+offset_right = 105.0
+offset_bottom = 642.0
+text = "High Score: 0"
+
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 484.0
+offset_top = 6.0
+offset_right = 690.0
+offset_bottom = 48.0
+theme = SubResource("Theme_turjo")
+text = "120"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

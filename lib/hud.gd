@@ -9,10 +9,11 @@ func show_message(text):
 	$MessageTimer.start()
 	
 func show_game_over():
+	
 	show_message("Game Over")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
-
+	$Score.reset(false)
 	$Message.text = "Go Fetch!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
@@ -20,10 +21,11 @@ func show_game_over():
 	$StartButton.show()
 	
 func show_game_won():
+	
 	show_message("Ball Delivered")
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
-
+	$Score.reset(true)
 	$Message.text = "Go Fetch!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
