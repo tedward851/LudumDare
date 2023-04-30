@@ -6,7 +6,9 @@ signal win
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var world_size # Size of the game window.
 @export var tennis_ball_scence: PackedScene
+@export var blind_person_scence: PackedScene
 var ball
+var blind_person
 var velocity
 var entity_in_control = "Player"
 var out_of_control_timer
@@ -21,7 +23,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if entity_in_control == "Player":
-		$AnimatedSprite2D.play("default")
+		if blind_person != null:
+			$AnimatedSprite2D.play("guide_dog")
+		else:
+			$AnimatedSprite2D.play("default")
 		velocity = Vector2.ZERO # The player's movement vector.
 		if Input.is_action_pressed("move_right"):
 			velocity.x += 1
@@ -109,6 +114,17 @@ func _on_body_entered(body):
 			add_child(out_of_control_timer)
 			out_of_control_timer.start()
 			lastObstacle = body
+			
+	elif body.is_in_group("BlindPeople"):
+		# Create a new instance of the blind person.
+		blind_person = blind_person_scence.instantiate()
+
+		# Set the cat's position to a random location.
+		blind_person.position = Vector2(-55, 15)
+		blind_person.scale = Vector2(1.3, 1.3)
+		# Spawn the cat by adding it to the Main scene.
+		call_deferred("add_child", blind_person)
+		body.holding_dog()
 
 func start(pos):
 	if ball != null:

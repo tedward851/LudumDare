@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfuu6ffbghfj7"]
+[gd_scene load_steps=11 format=3 uid="uid://cfuu6ffbghfj7"]
 
 [ext_resource type="Script" path="res://lib/dog.gd" id="1_dquh2"]
 [ext_resource type="Texture2D" uid="uid://0kosxmxhw5lk" path="res://art/Dog.png" id="2_b73t5"]
 [ext_resource type="PackedScene" uid="uid://r1o4cmh5g5ro" path="res://lib/TennisBall.tscn" id="2_uhyft"]
+[ext_resource type="PackedScene" uid="uid://b7smh6fjge3g7" path="res://lib/BlindPerson.tscn" id="3_e8hy5"]
 [ext_resource type="Texture2D" uid="uid://dj6gbp8vvq24g" path="res://art/Dog Peeing 1.png" id="4_henpj"]
+[ext_resource type="Texture2D" uid="uid://blgeqbkmssoox" path="res://art/Dog with Harness.png" id="4_u5qj7"]
 [ext_resource type="Texture2D" uid="uid://c1bpycq5rfkm6" path="res://art/Dog Peeing 2.png" id="5_abtc7"]
 [ext_resource type="Texture2D" uid="uid://c3y64xyajnkc4" path="res://art/Dog Peeing 3.png" id="6_njeot"]
 
@@ -15,6 +17,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_u5qj7")
+}],
+"loop": true,
+"name": &"guide_dog",
 "speed": 5.0
 }, {
 "frames": [{
@@ -39,15 +49,14 @@ height = 76.0
 [node name="Dog" type="Area2D"]
 script = ExtResource("1_dquh2")
 tennis_ball_scence = ExtResource("2_uhyft")
+blind_person_scence = ExtResource("3_e8hy5")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_hakqc")
-animation = &"peeing"
-frame = 2
-frame_progress = 0.0246116
+animation = &"guide_dog"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2, 2)

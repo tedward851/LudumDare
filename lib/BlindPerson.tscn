@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7smh6fjge3g7"]
+
+[ext_resource type="Script" path="res://lib/BlindPerson.gd" id="1_rtjse"]
+[ext_resource type="Texture2D" uid="uid://c3o41sjadxw8v" path="res://art/Blind Person.png" id="1_sh0v8"]
+[ext_resource type="Texture2D" uid="uid://cvoakeoxc41ov" path="res://art/Blind Person Searching 1.png" id="2_v1vot"]
+[ext_resource type="Texture2D" uid="uid://cqscu7pobcroc" path="res://art/Blind Person Searching 2.png" id="3_27pwn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewfbi"]
+radius = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdbtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sh0v8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v1vot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_27pwn")
+}],
+"loop": true,
+"name": &"searching",
+"speed": 5.0
+}]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_rtjse")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_ewfbi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_xdbtu")
+animation = &"searching"
+frame_progress = 0.57715
+speed_scale = 0.25

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tqtmhcrurl4a"]
+[gd_scene load_steps=12 format=3 uid="uid://tqtmhcrurl4a"]
 
 [ext_resource type="PackedScene" uid="uid://cfuu6ffbghfj7" path="res://lib/dog.tscn" id="1_3yokb"]
 [ext_resource type="Script" path="res://lib/main.gd" id="1_tw883"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqb33jf8f3dl5" path="res://lib/hud.tscn" id="4_te8ps"]
 [ext_resource type="PackedScene" uid="uid://cm1w31l1t8jc4" path="res://lib/person.tscn" id="5_1wdtv"]
 [ext_resource type="Texture2D" uid="uid://by1t048hop5aj" path="res://art/GrassTiles.png" id="7_sf42h"]
+[ext_resource type="PackedScene" uid="uid://b7smh6fjge3g7" path="res://lib/BlindPerson.tscn" id="8_1cdes"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_geg2b"]
 texture = ExtResource("7_sf42h")
@@ -66,6 +67,10 @@ curve = SubResource("Curve2D_f6l0t")
 
 [node name="Person" parent="." instance=ExtResource("5_1wdtv")]
 position = Vector2(107, 120)
+scale = Vector2(1.3, 1.3)
+
+[node name="BlindPerson" parent="." instance=ExtResource("8_1cdes")]
+position = Vector2(256, 264)
 scale = Vector2(1.3, 1.3)
 
 [connection signal="area_entered" from="Dog" to="Dog" method="_on_body_entered"]
