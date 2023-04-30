@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bqb33jf8f3dl5" path="res://lib/hud.tscn" id="4_te8ps"]
 [ext_resource type="PackedScene" uid="uid://cm1w31l1t8jc4" path="res://lib/person.tscn" id="5_1wdtv"]
 [ext_resource type="Texture2D" uid="uid://by1t048hop5aj" path="res://art/GrassTiles.png" id="7_sf42h"]
-[ext_resource type="PackedScene" uid="uid://b7smh6fjge3g7" path="res://lib/BlindPerson.tscn" id="8_1cdes"]
+[ext_resource type="PackedScene" path="res://lib/BlindPerson.tscn" id="8_1cdes"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_geg2b"]
 texture = ExtResource("7_sf42h")

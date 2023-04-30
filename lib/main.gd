@@ -5,6 +5,7 @@ extends Node
 var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
 var world_size = Vector2()
+const SAFE_ZONE = Vector2(350, 500)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,6 +27,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
+	removeObstacles()
 	createObstacles(sprinkler_scene, randi_range(15, 20), 350)
 	createObstacles(hydrant_scene, randi_range(5, 10), 200)
 
@@ -94,7 +96,7 @@ func createObstacles(scene: PackedScene, num, dist = 150):
 func checkObstaclePos(pos: Vector2, dist):
 	var obs = get_tree().get_nodes_in_group("Obstacle")
 	for item in obs:
-		if pos.distance_to(item.global_position) < dist:
+		if pos.distance_to(item.global_position) < dist or (pos.x < SAFE_ZONE.x && pos.y < SAFE_ZONE.y):
 			return false
 	return true
 
