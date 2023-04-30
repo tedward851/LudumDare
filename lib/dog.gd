@@ -65,9 +65,9 @@ func _on_body_entered(body):
 			# Must be deferred as we can't change physics properties on a physics callback.
 			entity_in_control = "Cat"
 			# The cat runs away from the dog
-			body.linear_velocity = body.global_position.direction_to(global_position).normalized() * -600
+			body.velocity = body.global_position.direction_to(global_position).normalized() * -600
 			# Set the dog off in pursuit of the cat
-			velocity = body.linear_velocity.normalized() * speed
+			velocity = body.velocity.normalized() * speed
 			rotation = velocity.angle() + (PI / 2)
 			# Update the cat model
 			body.rotation = rotation
