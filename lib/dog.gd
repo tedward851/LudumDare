@@ -36,6 +36,8 @@ func _process(delta):
 			velocity.y += 1
 		if Input.is_action_pressed("move_up"):
 			velocity.y -= 1		
+		
+		$AudioHandler.stop()
 	elif entity_in_control == "Sprinkler":
 		$AnimatedSprite2D.play("default")
 		velocity = global_position.direction_to(target).orthogonal()
@@ -81,6 +83,7 @@ func _on_body_entered(body):
 			add_child(out_of_control_timer)
 			out_of_control_timer.start()
 			lastObstacle = body
+			$AudioHandler.play("BarkC")
 		
 	elif body.is_in_group("DeliveryItems"):
 		ball = tennis_ball_scence.instantiate()
@@ -103,6 +106,7 @@ func _on_body_entered(body):
 			add_child(out_of_control_timer)
 			out_of_control_timer.start()
 			lastObstacle = body
+			$AudioHandler.play("BarkS")
 	elif body.is_in_group("Hydrant"):
 		if body.name != lastObstacle.name:
 			scoreEvent.emit("Hydrant")
@@ -113,6 +117,7 @@ func _on_body_entered(body):
 			add_child(out_of_control_timer)
 			out_of_control_timer.start()
 			lastObstacle = body
+			$AudioHandler.play("Pee")
 			
 	elif body.is_in_group("BlindPeople"):
 		# Create a new instance of the blind person.
