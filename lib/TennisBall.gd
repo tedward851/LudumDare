@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 300
+var speed = 550
 var velocity = Vector2()
 var frictionCoef = 1
 var timer
@@ -48,7 +48,7 @@ func fetched():
 	queue_free()
 
 func throw():
-	timer = createTimer(3.5)
+	timer = createTimer(4)
 	timer.timeout.connect(func(): 
 		isSlowing = true
 		$CollisionShape2D.set_deferred("disabled", false))

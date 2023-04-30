@@ -10,8 +10,7 @@ func _ready():
 	
 
 func throwBall():
-	lookDirection = Vector2.from_angle($Sprite2D.rotation - PI/4)
-	ball.setVelocityV(lookDirection)
+	ball.setVelocityV(Vector2.from_angle(rotation + PI/2))
 	ball.throw()
 	
 
@@ -26,14 +25,12 @@ func reset():
 	
 
 func setup():
-	$Sprite2D.rotation_degrees = randi_range(45, 135)
-	lookDirection = Vector2.from_angle($Sprite2D.rotation - PI/4)
 	createBall()
-	ball.setVelocityV(lookDirection)
+	rotation_degrees = randi_range(-90, 0)
 
 func createBall():
 	ball = ballScene.instantiate()
-	ball.position = Vector2(17, 8)
+	ball.position = $Hand.position
 	ball.scale = Vector2(.25, .25)
 	call_deferred("add_child", ball)
 	

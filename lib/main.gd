@@ -28,7 +28,7 @@ func new_game():
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
-	createObstacles(sprinkler_scene, randi_range(7, 14), 250)
+	createObstacles(sprinkler_scene, randi_range(13, 18), 350)
 
 func win_game():
 	$CatTimer.stop()

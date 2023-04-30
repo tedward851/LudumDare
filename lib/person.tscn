@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm1w31l1t8jc4"]
 
-[ext_resource type="Texture2D" uid="uid://cxcoovq7p67er" path="res://art/Person.png" id="1_nyh4b"]
+[ext_resource type="Texture2D" uid="uid://buh0o2j577vgk" path="res://art/Person.png" id="1_nyh4b"]
 [ext_resource type="Script" path="res://lib/person.gd" id="1_uqstq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ne5gs"]
@@ -18,3 +18,6 @@ shape = SubResource("CircleShape2D_ne5gs")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Hand" type="Node2D" parent="."]
+position = Vector2(-35, 5)
