@@ -101,7 +101,6 @@ func start(pos):
 		ball.queue_free()
 	position = pos
 	show()
-	$CollisionShape2D.disabled = false
 
 func setBoundry(size):
 	world_size = size

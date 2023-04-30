@@ -35,5 +35,5 @@ func createBall():
 	ball = ballScene.instantiate()
 	ball.position = Vector2(17, 8)
 	ball.scale = Vector2(.25, .25)
-	add_child(ball)
+	call_deferred("add_child", ball)
 	
