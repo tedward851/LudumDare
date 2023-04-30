@@ -1,5 +1,7 @@
 extends Area2D
 
+var looking_for_dog = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +11,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if looking_for_dog:
+			$AnimatedSprite2D.play("searching")
+	else:
+		$AnimatedSprite2D.play("default")
 
 func holding_dog():
 	queue_free()
