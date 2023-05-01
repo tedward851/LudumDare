@@ -93,6 +93,7 @@ func _on_body_entered(body):
 			$AudioHandler.play("BarkC")
 		
 	elif body.is_in_group("DeliveryItems"):
+		scoreEvent.emit("DeliveryItem")
 		ball = tennis_ball_scence.instantiate()
 		ball.position = Vector2(0, -75)
 		ball.scale = Vector2(.25, .25)

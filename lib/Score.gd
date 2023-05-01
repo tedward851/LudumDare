@@ -5,6 +5,7 @@ var highScore = 0
 const sprinklerValue = 20
 const catValue = 10
 const hydrantValue = 15
+const ballValue = 100
 var gameMode = "Escort"
 var comboMult = 1
 # Called when the node enters the scene tree for the first time.
@@ -31,6 +32,7 @@ func scoreEvent(type):
 				"Cat": score += catValue * comboMult
 				"Sprinkler": score += sprinklerValue * comboMult
 				"Hydrant": score += hydrantValue * comboMult
+				"DeliveryItem": score += 100 * comboMult
 		
 			$ComboTimer.start()
 			comboMult +=1

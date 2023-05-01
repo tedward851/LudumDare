@@ -36,7 +36,8 @@ func _on_dog_hit():
 
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
-	
+	get_tree().call_group("Sprinkler", "queue_free")
+	get_tree().call_group("Hydrant", "queue_free")
 	if game_mode == "Escort": 
 		call_deferred("add_child", blindPerson)
 	
@@ -49,8 +50,8 @@ func new_game():
 	
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
-	createObstacles(sprinkler_scene, randi_range(5, 10), 350)
-	createObstacles(hydrant_scene, randi_range(5, 10), 350)
+	createObstacles(sprinkler_scene, randi_range(10, 15), 350)
+	createObstacles(hydrant_scene, randi_range(10, 15), 200)
 
 func win_game():
 	$CatTimer.stop()
