@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://lib/dog.gd" id="1_dquh2"]
 [ext_resource type="Texture2D" uid="uid://0kosxmxhw5lk" path="res://art/Dog.png" id="2_b73t5"]
 [ext_resource type="PackedScene" uid="uid://r1o4cmh5g5ro" path="res://lib/TennisBall.tscn" id="2_uhyft"]
-[ext_resource type="PackedScene" path="res://lib/BlindPerson.tscn" id="3_e8hy5"]
+[ext_resource type="PackedScene" uid="uid://b7smh6fjge3g7" path="res://lib/BlindPerson.tscn" id="3_e8hy5"]
 [ext_resource type="Texture2D" uid="uid://dj6gbp8vvq24g" path="res://art/Dog Peeing 1.png" id="4_henpj"]
 [ext_resource type="Texture2D" uid="uid://blgeqbkmssoox" path="res://art/Dog with Harness.png" id="4_u5qj7"]
 [ext_resource type="Texture2D" uid="uid://c1bpycq5rfkm6" path="res://art/Dog Peeing 2.png" id="5_abtc7"]

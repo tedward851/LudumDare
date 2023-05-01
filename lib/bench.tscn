@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqlttr462ghup"]
+
+[ext_resource type="Texture2D" uid="uid://clbrjsm00d3eu" path="res://art/Bench.png" id="1_5igl1"]
+[ext_resource type="Script" path="res://lib/bench.gd" id="1_h0awe"]
+[ext_resource type="PackedScene" uid="uid://b7smh6fjge3g7" path="res://lib/BlindPerson.tscn" id="2_cne2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6srm1"]
+size = Vector2(72, 48)
+
+[node name="Bench" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_h0awe")
+blind_person_scence = ExtResource("2_cne2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5igl1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_6srm1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

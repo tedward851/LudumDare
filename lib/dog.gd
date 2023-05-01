@@ -17,6 +17,7 @@ var lastObstacle = self
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	world_size = Vector2(5000,5000)
+	add_to_group("Dog")
 	hide()
 
 
@@ -143,3 +144,7 @@ func setBoundry(size):
 	world_size = size
 	$Camera2D.limit_right = size.x
 	$Camera2D.limit_bottom = size.y
+
+func drop_blind_person():
+	if blind_person != null:
+		blind_person.queue_free()

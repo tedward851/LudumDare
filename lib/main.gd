@@ -7,6 +7,7 @@ var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
 var world_size = Vector2()
 const SAFE_ZONE = Vector2(350, 500)
+const BENCH_AREA = Vector2(2700, 27000)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,6 +26,7 @@ func _on_dog_hit():
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
 	$Dog.start($StartPosition.position)
+	$BlindPerson/CollisionShape2D.disabled = false
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
 	$Person.reset()
@@ -96,7 +98,7 @@ func createObstacles(scene: PackedScene, num, dist = 150):
 func checkObstaclePos(pos: Vector2, dist):
 	var obs = get_tree().get_nodes_in_group("Obstacle")
 	for item in obs:
-		if pos.distance_to(item.global_position) < dist or (pos.x < SAFE_ZONE.x && pos.y < SAFE_ZONE.y):
+		if pos.distance_to(item.global_position) < dist or (pos.x < SAFE_ZONE.x && pos.y < SAFE_ZONE.y) or (pos.x > BENCH_AREA.x && pos.y > BENCH_AREA.y):
 			return false
 	return true
 
@@ -127,8 +129,9 @@ func _on_dog_dropped_blind_person():
 		blind_person.position.y = $Dog.position.y + 200
 		
 		blind_person.looking_for_dog = true
+		blind_person.disable_collisions = false
 		
 		blind_person.scale = Vector2(1.3, 1.3)
 		# Spawn the cat by adding it to the Main scene.
-		await call_deferred("add_child", blind_person)
+		call_deferred("add_child", blind_person)
 		
