@@ -1,7 +1,8 @@
 extends Node2D
 
 var score
-var highScore = 0
+var escortHighScore = 0
+var fetchHighScore = 0
 const sprinklerValue = 20
 const catValue = 10
 const hydrantValue = 15
@@ -39,12 +40,9 @@ func scoreEvent(type):
 			updateUI()
 		"Escort":
 			match type:
-				"Cat": score -= catValue * comboMult
-				"Sprinkler": score -= sprinklerValue * comboMult
-				"Hydrant": score -= hydrantValue * comboMult
-			
-			$ComboTimer.start()
-			comboMult +=1
+				"Cat": score -= catValue
+				"Sprinkler": score -= sprinklerValue
+				"Hydrant": score -= hydrantValue
 			updateUI()
 		
 func updateUI():
@@ -52,10 +50,30 @@ func updateUI():
 	$ComboLabel.text = "Combo: x%s" % comboMult
 
 func reset(gameWon):
-	if score > highScore and gameWon:
-		highScore = score
-		$HighScoreLabel.text = "High Score: %s" % highScore
-		$HighScoreLabel.visible = true
-	score = 0
+	match gameMode:
+		"Fetch":
+			if score > fetchHighScore and gameWon:
+				fetchHighScore = score
+				$HighScoreLabel.text = "High Score: %s" % fetchHighScore
+				$HighScoreLabel.visible = true
+			score = 0
+		"Escort":
+			if score > escortHighScore and gameWon:
+				escortHighScore = score
+				$HighScoreLabel.text = "High Score: %s" % escortHighScore
+				$HighScoreLabel.visible = true
+			score = 500
 	comboMult = 1
 	updateUI()
+
+func displayGameModeHighScore(currentGameMode):
+	match gameMode:
+		"Fetch":
+			$HighScoreLabel.text = "High Score: %s" % fetchHighScore
+			score = 0
+			updateUI()
+		"Escort":
+			$HighScoreLabel.text = "High Score: %s" % escortHighScore
+			score = 500
+			updateUI()
+	
