@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqb33jf8f3dl5"]
+[gd_scene load_steps=7 format=3 uid="uid://bqb33jf8f3dl5"]
 
 [ext_resource type="Script" path="res://lib/hud.gd" id="1_2ci2b"]
 [ext_resource type="Script" path="res://lib/Score.gd" id="2_bajef"]
+
+[sub_resource type="Theme" id="Theme_fdakl"]
+default_font_size = 60
+
+[sub_resource type="Theme" id="Theme_sp7g1"]
+default_font_size = 30
 
 [sub_resource type="Theme" id="Theme_auoc1"]
 default_font_size = 30
@@ -13,24 +19,47 @@ default_font_size = 40
 script = ExtResource("1_2ci2b")
 
 [node name="Message" type="Label" parent="."]
-anchors_preset = 8
+visible = false
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.459
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -244.0
-offset_top = -45.5
-offset_right = 244.0
-offset_bottom = 45.5
+anchor_bottom = 0.459
+offset_left = -236.0
+offset_top = -100.432
+offset_right = 252.0
+offset_bottom = -4.43201
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "Go Fetch!"
+theme = SubResource("Theme_fdakl")
+text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="Subtext" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.459
+anchor_right = 0.5
+anchor_bottom = 0.459
+offset_left = -294.0
+offset_top = 11.568
+offset_right = 310.0
+offset_bottom = 102.568
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_sp7g1")
+text = "test"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="MessageTimer2" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
@@ -40,13 +69,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -571.0
-offset_top = -100.0
-offset_right = -244.0
-offset_bottom = -4.0
+offset_left = -111.0
+offset_top = -241.0
+offset_right = 143.0
+offset_bottom = -166.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Play Again"
 
 [node name="NextLevelButton" type="Button" parent="."]
@@ -55,11 +84,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -31.0
+offset_left = -718.0
+offset_top = -119.0
+offset_right = -394.0
+offset_bottom = -44.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Change Mode"
 
 [node name="Score" type="Node2D" parent="."]
@@ -100,5 +131,6 @@ text = "120"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="timeout" from="MessageTimer2" to="." method="_on_message_timer_timeout2"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]

@@ -36,8 +36,7 @@ func _on_dog_hit():
 
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
-	get_tree().call_group("Sprinkler", "queue_free")
-	get_tree().call_group("Hydrant", "queue_free")
+	get_tree().call_group("Obstacle", "queue_free")
 	if game_mode == "Escort": 
 		call_deferred("add_child", blindPerson)
 	
@@ -45,11 +44,12 @@ func new_game():
 	$Dog.picked_up_og_blind_person = false
 	if game_mode == "Fetch":
 		$Person.reset()
+		$HUD.onStart(game_mode)
 	elif game_mode == "Escort":
 		blindPerson.find_child("CollisionShape2D").disabled = false
+		$HUD.onStart(game_mode)
 	
 	$StartTimer.start()
-	$HUD.show_message("Get Ready")
 	createObstacles(sprinkler_scene, randi_range(10, 15), 350)
 	createObstacles(hydrant_scene, randi_range(10, 15), 200)
 
