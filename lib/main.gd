@@ -37,6 +37,9 @@ func _on_dog_hit():
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
 	
+	$HUD/Score.gameMode = game_mode
+	$HUD/Score.displayGameModeHighScore(game_mode)
+	
 	if game_mode == "Escort": 
 		call_deferred("add_child", blindPerson)
 	
