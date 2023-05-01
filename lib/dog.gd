@@ -18,7 +18,6 @@ var lastObstacle = self
 func _ready():
 	world_size = Vector2(5000,5000)
 	add_to_group("Dog")
-	hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -143,7 +142,6 @@ func start(pos):
 	if ball != null:
 		ball.queue_free()
 	position = pos
-	show()
 
 func setBoundry(size):
 	world_size = size

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bca4v1s2yur30"]
+
+[ext_resource type="Script" path="res://lib/GameMode.gd" id="1_hkp1c"]
+[ext_resource type="Texture2D" uid="uid://buh0o2j577vgk" path="res://art/Person.png" id="2_ltift"]
+[ext_resource type="Texture2D" uid="uid://bvwy6qhgafo4q" path="res://art/Blind Person Searching 3.png" id="3_5elqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwq5h"]
+size = Vector2(79, 40)
+
+[node name="GameMode" type="Area2D" groups=["GamemodeSelector"]]
+script = ExtResource("1_hkp1c")
+
+[node name="FetchSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_ltift")
+
+[node name="EscortSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_5elqy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -49.0
+offset_top = 29.0
+offset_right = 45.0
+offset_bottom = 55.0
+text = "Game Mode"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 1)
+shape = SubResource("RectangleShape2D_jwq5h")

@@ -36,6 +36,7 @@ func show_game_won():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$NextLevelButton.hide()
+	$StartButton.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

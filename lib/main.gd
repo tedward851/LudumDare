@@ -8,11 +8,21 @@ var score
 var world_size = Vector2()
 const SAFE_ZONE = Vector2(350, 500)
 const BENCH_AREA = Vector2(2700, 27000)
+var person
+var blindPerson
+var bench
+var game_mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
 	world_size = Vector2($ColorRect.size.x, $ColorRect.size.y)
+	person = $Person
+	blindPerson = $BlindPerson
+	bench = $Bench
+	remove_child(bench)
+	remove_child(person)
+	remove_child(blindPerson)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -25,11 +35,15 @@ func _on_dog_hit():
 
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
+	
 	$Dog.start($StartPosition.position)
-	$BlindPerson/CollisionShape2D.disabled = false
+	if game_mode == "Fetch":
+		$Person.reset()
+	elif game_mode == "Escort":
+		$BlindPerson/CollisionShape2D.disabled = false
+	
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
-	$Person.reset()
 	createObstacles(sprinkler_scene, randi_range(5, 10), 350)
 	createObstacles(hydrant_scene, randi_range(5, 10), 350)
 
@@ -39,19 +53,22 @@ func win_game():
 	get_tree().call_group("Cats", "queue_free")
 	$HUD.show_game_won()
 	$Dog.start($StartPosition.position)
-	$Person.reset()
+	if game_mode == "Fetch":
+		$Person.reset()
 	
 func lose_game():
 	$CatTimer.stop()
 	get_tree().call_group("Cats", "queue_free")
 	$HUD.show_game_over()
 	$Dog.start($StartPosition.position)
-	$Person.reset()
+	if game_mode == "Fetch":
+		$Person.reset()
 
 func _on_start_timer_timeout():
 	$CatTimer.start()
 	$GameTimer.start()
-	$Person.throwBall()
+	if game_mode == "Fetch":
+		$Person.throwBall()
 
 
 func _on_cat_timer_timeout():
@@ -135,3 +152,24 @@ func _on_dog_dropped_blind_person():
 		# Spawn the cat by adding it to the Main scene.
 		call_deferred("add_child", blind_person)
 		
+
+
+func _on_gamemode_selected(mode):
+	game_mode = mode
+	match mode:
+		"Fetch": 
+			call_deferred("add_child", person)
+			call_deferred("new_game")
+		"Escort": 
+			call_deferred("add_child", blindPerson)
+			call_deferred("add_child", bench)
+			call_deferred("new_game")
+
+func changeMode():
+	$Dog.start(Vector2(1200,300))
+	if game_mode == "Fetch":
+		remove_child(person)
+	elif game_mode == "Escort":
+		if bench != null: remove_child(bench)
+		if blindPerson != null: remove_child(blindPerson)
+	get_tree().call_group("GamemodeSelector", "activate")
