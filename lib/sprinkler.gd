@@ -5,6 +5,7 @@ extends Node2D
 func _ready():
 	$AnimationPlayer.play("Spin")
 	$AnimatedSprite2D.play("default")
+	$AudioStreamPlayer2D.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
