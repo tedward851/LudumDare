@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cfuu6ffbghfj7"]
+[gd_scene load_steps=18 format=3 uid="uid://cfuu6ffbghfj7"]
 
 [ext_resource type="Script" path="res://lib/dog.gd" id="1_dquh2"]
 [ext_resource type="Texture2D" uid="uid://0kosxmxhw5lk" path="res://art/Dog.png" id="2_b73t5"]
@@ -8,13 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://blgeqbkmssoox" path="res://art/Dog with Harness.png" id="4_u5qj7"]
 [ext_resource type="Texture2D" uid="uid://c1bpycq5rfkm6" path="res://art/Dog Peeing 2.png" id="5_abtc7"]
 [ext_resource type="Texture2D" uid="uid://c3y64xyajnkc4" path="res://art/Dog Peeing 3.png" id="6_njeot"]
+[ext_resource type="Texture2D" uid="uid://cbw3ghf2wygve" path="res://art/Harness Dog Peeing 1.png" id="6_tw4vc"]
+[ext_resource type="Texture2D" uid="uid://bwmierhnhhfro" path="res://art/Harness Dog Peeing 2.png" id="7_dwqpp"]
+[ext_resource type="Texture2D" uid="uid://7x8o8u4oecet" path="res://art/Harness Dog Peeing 3.png" id="8_dv3dr"]
 [ext_resource type="Script" path="res://lib/AudioHandler.gd" id="9_vmqid"]
 [ext_resource type="AudioStream" uid="uid://m3kskf7cjark" path="res://sound/LunaBark.wav" id="9_wobcf"]
 [ext_resource type="AudioStream" uid="uid://bt5paldbdb5c5" path="res://sound/LunaBark5.wav" id="10_px3i0"]
 [ext_resource type="AudioStream" uid="uid://duks1jnk4c8po" path="res://sound/Peeing.wav" id="11_u26uq"]
-[ext_resource type="Texture2D" uid="uid://cbw3ghf2wygve" path="res://art/Harness Dog Peeing 1.png" id="6_tw4vc"]
-[ext_resource type="Texture2D" uid="uid://bwmierhnhhfro" path="res://art/Harness Dog Peeing 2.png" id="7_dwqpp"]
-[ext_resource type="Texture2D" uid="uid://7x8o8u4oecet" path="res://art/Harness Dog Peeing 3.png" id="8_dv3dr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hakqc"]
 animations = [{
