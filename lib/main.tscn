@@ -101,6 +101,7 @@ mode = "Fetch"
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="next_level" from="HUD" to="." method="changeMode"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="win" from="Bench" to="." method="win_game"]
 [connection signal="gamemode_selected" from="EscortGamemode" to="." method="_on_gamemode_selected"]
