@@ -56,13 +56,13 @@ func reset(gameWon):
 				fetchHighScore = score
 				$HighScoreLabel.text = "High Score: %s" % fetchHighScore
 				$HighScoreLabel.visible = true
+			score = 0
 		"Escort":
 			if score > escortHighScore and gameWon:
 				escortHighScore = score
 				$HighScoreLabel.text = "High Score: %s" % escortHighScore
 				$HighScoreLabel.visible = true
-	
-	score = 0
+			score = 500
 	comboMult = 1
 	updateUI()
 
@@ -70,9 +70,10 @@ func displayGameModeHighScore(currentGameMode):
 	match gameMode:
 		"Fetch":
 			$HighScoreLabel.text = "High Score: %s" % fetchHighScore
+			score = 0
 			updateUI()
 		"Escort":
 			$HighScoreLabel.text = "High Score: %s" % escortHighScore
-			
+			score = 500
 			updateUI()
 	
