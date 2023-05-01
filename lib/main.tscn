@@ -91,6 +91,5 @@ rotation = 2.35619
 [connection signal="timeout" from="CatTimer" to="." method="_on_cat_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
-[connection signal="next_level" from="HUD" to="." method="_on_hud_next_level"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="win" from="Bench" to="." method="win_game"]

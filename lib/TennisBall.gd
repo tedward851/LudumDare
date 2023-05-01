@@ -45,7 +45,6 @@ func createTimer(time):
 	return timer
 
 func fetched():
-	print("deleting old ball")
 	queue_free()
 
 func throw():

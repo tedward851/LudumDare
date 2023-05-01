@@ -7,12 +7,13 @@ var sprinkler_scene: PackedScene = preload("res://lib/sprinkler.tscn")
 var score
 var world_size = Vector2()
 const SAFE_ZONE = Vector2(350, 500)
-const BENCH_AREA = Vector2(2700, 27000)
+const BENCH_AREA = Vector2(2700, 2700)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Dog.setBoundry($ColorRect.size)
 	world_size = Vector2($ColorRect.size.x, $ColorRect.size.y)
+	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -107,11 +108,6 @@ func removeObstacles():
 	for item in obs:
 		item.queue_free()
 
-
-func _on_hud_next_level():
-	get_tree().change_scene_to_file("res://lib/level_2.tscn")
-
-
 func _on_game_timer_timeout():
 	lose_game()
 
@@ -125,8 +121,15 @@ func _on_dog_dropped_blind_person():
 		var blind_person = blind_person_scene.instantiate()
 
 		# Set the cat's position to a random location.
-		blind_person.position.x = $Dog.position.x + 200
-		blind_person.position.y = $Dog.position.y + 200
+		var h_move = randi_range(100,200) 
+		var v_move = randi_range(100,200) 
+		if randf() < 0.5:
+			h_move *= -1
+		if randf() < 0.5:
+			v_move *= -1
+			
+		blind_person.position.x = clamp($Dog.position.x + h_move,0,world_size.x)
+		blind_person.position.y = clamp($Dog.position.y + v_move,0,world_size.y)
 		
 		blind_person.looking_for_dog = true
 		blind_person.disable_collisions = false

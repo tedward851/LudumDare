@@ -20,5 +20,4 @@ func _process(delta):
 		$AnimatedSprite2D.play("default")
 
 func holding_dog():
-	print("deleting blind person " + self.name)
 	queue_free()
