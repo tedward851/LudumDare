@@ -40,13 +40,27 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -79.0
-offset_top = -96.0
-offset_right = 79.0
+offset_left = -571.0
+offset_top = -100.0
+offset_right = -244.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
-text = "Start"
+text = "Play Again"
+
+[node name="NextLevelButton" type="Button" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Change Mode"
 
 [node name="Score" type="Node2D" parent="."]
 script = ExtResource("2_bajef")
