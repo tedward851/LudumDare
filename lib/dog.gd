@@ -3,12 +3,14 @@ extends Area2D
 signal win
 signal scoreEvent(type)
 signal dropped_blind_person
+signal attached_blind_person
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var world_size # Size of the game window.
 @export var tennis_ball_scence: PackedScene
 @export var blind_person_scence: PackedScene
 var ball
 var blind_person
+var picked_up_og_blind_person = false
 var velocity
 var entity_in_control = "Player"
 var out_of_control_timer
@@ -136,7 +138,11 @@ func _on_body_entered(body):
 		blind_person.scale = Vector2(1.3, 1.3)
 		# Spawn the cat by adding it to the Main scene.
 		call_deferred("add_child", blind_person)
-		body.holding_dog()
+		if picked_up_og_blind_person:
+			body.holding_dog()
+		else:
+			attached_blind_person.emit()
+			picked_up_og_blind_person = true
 
 func start(pos):
 	if ball != null:

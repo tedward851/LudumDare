@@ -95,6 +95,7 @@ position = Vector2(1335, 67)
 mode = "Fetch"
 
 [connection signal="area_entered" from="Dog" to="Dog" method="_on_body_entered"]
+[connection signal="attached_blind_person" from="Dog" to="." method="_on_dog_attached_blind_person"]
 [connection signal="dropped_blind_person" from="Dog" to="." method="_on_dog_dropped_blind_person"]
 [connection signal="scoreEvent" from="Dog" to="." method="_on_dog_score_event"]
 [connection signal="win" from="Dog" to="." method="win_game"]

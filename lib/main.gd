@@ -37,11 +37,15 @@ func _on_dog_hit():
 func new_game():
 	get_tree().call_group("Cats", "queue_free")
 	
+	if game_mode == "Escort": 
+		call_deferred("add_child", blindPerson)
+	
 	$Dog.start($StartPosition.position)
+	$Dog.picked_up_og_blind_person = false
 	if game_mode == "Fetch":
 		$Person.reset()
 	elif game_mode == "Escort":
-		$BlindPerson/CollisionShape2D.disabled = false
+		blindPerson.find_child("CollisionShape2D").disabled = false
 	
 	$StartTimer.start()
 	$HUD.show_message("Get Ready")
@@ -64,6 +68,9 @@ func lose_game():
 	$Dog.start($StartPosition.position)
 	if game_mode == "Fetch":
 		$Person.reset()
+	if game_mode == "Escort": 
+		remove_child(blindPerson)
+		get_tree().call_group("BlindPeople", "queue_free")
 
 func _on_start_timer_timeout():
 	$CatTimer.start()
@@ -176,3 +183,7 @@ func changeMode():
 		if bench != null: remove_child(bench)
 		if blindPerson != null: remove_child(blindPerson)
 	get_tree().call_group("GamemodeSelector", "activate")
+
+
+func _on_dog_attached_blind_person():
+	if blindPerson != null: remove_child(blindPerson)
