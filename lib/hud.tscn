@@ -100,25 +100,27 @@ script = ExtResource("2_bajef")
 wait_time = 3.0
 
 [node name="ScoreLabel" type="Label" parent="Score"]
-offset_left = 4.0
-offset_right = 192.0
-offset_bottom = 45.0
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 201.0
+offset_bottom = 49.0
 theme = SubResource("Theme_auoc1")
 text = "Score: 0"
 
 [node name="ComboLabel" type="Label" parent="Score"]
-offset_left = 2.0
+offset_left = 18.0
 offset_top = 48.0
-offset_right = 115.0
-offset_bottom = 74.0
+offset_right = 174.0
+offset_bottom = 79.0
+theme_override_font_sizes/font_size = 20
 text = "Combo: x1"
 
 [node name="HighScoreLabel" type="Label" parent="Score"]
-visible = false
 offset_left = 4.0
-offset_top = 616.0
-offset_right = 105.0
+offset_top = 611.0
+offset_right = 172.0
 offset_bottom = 642.0
+theme_override_font_sizes/font_size = 20
 text = "High Score: 0"
 
 [node name="TimerLabel" type="Label" parent="."]

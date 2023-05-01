@@ -62,7 +62,6 @@ func win_game():
 	$GameTimer.stop()
 	get_tree().call_group("Cats", "queue_free")
 	$HUD.show_game_won()
-	$Dog.start($StartPosition.position)
 	if game_mode == "Fetch":
 		$Person.reset()
 	
@@ -70,7 +69,7 @@ func lose_game():
 	$CatTimer.stop()
 	get_tree().call_group("Cats", "queue_free")
 	$HUD.show_game_over()
-	$Dog.start($StartPosition.position)
+	
 	if game_mode == "Fetch":
 		$Person.reset()
 	if game_mode == "Escort": 
