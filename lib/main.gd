@@ -175,7 +175,6 @@ func _on_gamemode_selected(mode):
 			call_deferred("add_child", person)
 			call_deferred("new_game")
 		"Escort": 
-			call_deferred("add_child", blindPerson)
 			call_deferred("add_child", bench)
 			call_deferred("new_game")
 
