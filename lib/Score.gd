@@ -71,9 +71,11 @@ func displayGameModeHighScore(currentGameMode):
 		"Fetch":
 			$HighScoreLabel.text = "High Score: %s" % fetchHighScore
 			score = 0
+			$ComboLabel.show()
 			updateUI()
 		"Escort":
 			$HighScoreLabel.text = "High Score: %s" % escortHighScore
 			score = 500
+			$ComboLabel.hide()
 			updateUI()
 	

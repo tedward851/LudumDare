@@ -8,22 +8,24 @@ func onStart(mode):
 	game_mode = mode
 	match game_mode:
 		"Fetch":
-			show_message("Fetch the Ball!", 40)
-			show_subtext("Hit obstacles to increase your score")
+			show_message("Fetch the Ball!", 40, 3)
+			show_subtext("Hit obstacles to increase your score", 30, 3)
 		"Escort":
-			show_message("Guide Your Person to the Bench!", 40)
-			show_subtext("Avoid obstacles for a higher score")
+			show_message("Guide Your Person to the Bench!", 40, 3)
+			show_subtext("Avoid obstacles and arrive quickly for a higher score", 30, 3)
 
-func show_message(text, size = 64):
+func show_message(text, size = 64, duration = 2):
 	$Message.add_theme_font_size_override("font_size", size)
 	$Message.text = text
 	$Message.show()
+	$MessageTimer.wait_time = duration
 	$MessageTimer.start()
 	
-func show_subtext(text, size = 30):
+func show_subtext(text, size = 30, duration = 2):
 	$Subtext.add_theme_font_size_override("font_size", size)
 	$Subtext.text = text
 	$Subtext.show()
+	$MessageTimer2.wait_time = duration
 	$MessageTimer2.start()
 	
 func show_game_over():
@@ -52,7 +54,7 @@ func show_game_over():
 			$NextLevelButton.show()
 			
 	
-func show_game_won():
+func show_game_won(time_left):
 	match game_mode:
 		"Fetch":
 			show_message("Ball Delivered!")
@@ -65,6 +67,7 @@ func show_game_won():
 			$NextLevelButton.show()
 		"Escort":
 			show_message("Person Delivered!")
+			$Score.score += int(10 * time_left)
 			await $MessageTimer.timeout
 			$Score.reset(true)
 			$Message.text = "Play Again?"

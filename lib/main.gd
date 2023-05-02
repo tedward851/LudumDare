@@ -58,10 +58,10 @@ func new_game():
 	createObstacles(hydrant_scene, randi_range(10, 15), 200)
 
 func win_game():
+	$HUD.show_game_won($GameTimer.time_left)
 	$CatTimer.stop()
 	$GameTimer.stop()
 	get_tree().call_group("Cats", "queue_free")
-	$HUD.show_game_won()
 	if game_mode == "Fetch":
 		$Person.reset()
 	

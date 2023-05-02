@@ -30,7 +30,7 @@ func _on_area_entered(area):
 		# Spawn the cat by adding it to the Main scene.
 		call_deferred("add_child", blind_person)
 		area.drop_blind_person()
+		win.emit()
 		$WinDelay.timeout.connect(func(): 
-			win.emit()
 			blind_person.queue_free()
 			$CollisionShape2D.set_deferred("disabled", false))
