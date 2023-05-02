@@ -54,7 +54,7 @@ func new_game():
 		$HUD.onStart(game_mode)
 	
 	$StartTimer.start()
-	createObstacles(sprinkler_scene, randi_range(10, 15), 350)
+	createObstacles(sprinkler_scene, randi_range(14, 18), 400)
 	createObstacles(hydrant_scene, randi_range(10, 15), 200)
 
 func win_game():
