@@ -87,11 +87,13 @@ position = Vector2(2880, 2880)
 rotation = 2.35619
 
 [node name="EscortGamemode" parent="." instance=ExtResource("10_sokru")]
-position = Vector2(1095, 67)
+position = Vector2(1050, 67)
+scale = Vector2(1.5, 1.5)
 mode = "Escort"
 
 [node name="FetchGamemode" parent="." instance=ExtResource("10_sokru")]
-position = Vector2(1335, 67)
+position = Vector2(1350, 67)
+scale = Vector2(1.5, 1.5)
 mode = "Fetch"
 
 [connection signal="area_entered" from="Dog" to="Dog" method="_on_body_entered"]
